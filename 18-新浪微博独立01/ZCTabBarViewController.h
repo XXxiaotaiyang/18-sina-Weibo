@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ZCTabBarViewController.h
 //  18-新浪微博独立01
 //
 //  Created by 闲人 on 15/10/7.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface ZCTabBarViewController : UITabBarController
 
 @end
-

@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		CAC5D13B1BC53F85005399BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D13A1BC53F85005399BB /* main.m */; };
-		CAC5D13E1BC53F85005399BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D13D1BC53F85005399BB /* AppDelegate.m */; };
-		CAC5D1411BC53F85005399BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1401BC53F85005399BB /* ViewController.m */; };
-		CAC5D1441BC53F85005399BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC5D1421BC53F85005399BB /* Main.storyboard */; };
+		CAC5D13E1BC53F85005399BB /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */; };
 		CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC5D1451BC53F85005399BB /* Images.xcassets */; };
-		CAC5D1491BC53F85005399BB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC5D1471BC53F85005399BB /* LaunchScreen.xib */; };
 		CAC5D1551BC53F85005399BB /* _8_______01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1541BC53F85005399BB /* _8_______01Tests.m */; };
+		CAC5D1641BC54722005399BB /* ZCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1631BC54722005399BB /* ZCHomeViewController.m */; };
+		CAC5D1671BC54CD4005399BB /* ZCTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */; };
+		CAC5D16A1BC54E2D005399BB /* ZCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */; };
+		CAC5D16D1BC553FD005399BB /* ZCDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */; };
+		CAC5D1701BC55482005399BB /* ZCProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +32,23 @@
 		CAC5D1351BC53F85005399BB /* 18-新浪微博独立01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "18-新浪微博独立01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC5D1391BC53F85005399BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC5D13A1BC53F85005399BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CAC5D13C1BC53F85005399BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		CAC5D13D1BC53F85005399BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CAC5D13F1BC53F85005399BB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CAC5D1401BC53F85005399BB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CAC5D1431BC53F85005399BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CAC5D13C1BC53F85005399BB /* ZCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCAppDelegate.h; sourceTree = "<group>"; };
+		CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCAppDelegate.m; sourceTree = "<group>"; };
 		CAC5D1451BC53F85005399BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CAC5D1481BC53F85005399BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CAC5D14E1BC53F85005399BB /* 18-新浪微博独立01Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "18-新浪微博独立01Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC5D1531BC53F85005399BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC5D1541BC53F85005399BB /* _8_______01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_8_______01Tests.m"; sourceTree = "<group>"; };
+		CAC5D15E1BC5404C005399BB /* 新浪微博独立-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "新浪微博独立-prefix.pch"; sourceTree = "<group>"; };
+		CAC5D1621BC54722005399BB /* ZCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCHomeViewController.h; sourceTree = "<group>"; };
+		CAC5D1631BC54722005399BB /* ZCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCHomeViewController.m; sourceTree = "<group>"; };
+		CAC5D1651BC54CD4005399BB /* ZCTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTabBarViewController.h; sourceTree = "<group>"; };
+		CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTabBarViewController.m; sourceTree = "<group>"; };
+		CAC5D1681BC54E2D005399BB /* ZCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMessageViewController.h; sourceTree = "<group>"; };
+		CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMessageViewController.m; sourceTree = "<group>"; };
+		CAC5D16B1BC553FD005399BB /* ZCDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDiscoverViewController.h; sourceTree = "<group>"; };
+		CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDiscoverViewController.m; sourceTree = "<group>"; };
+		CAC5D16E1BC55482005399BB /* ZCProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCProfileTableViewController.h; sourceTree = "<group>"; };
+		CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCProfileTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,14 +90,21 @@
 		CAC5D1371BC53F85005399BB /* 18-新浪微博独立01 */ = {
 			isa = PBXGroup;
 			children = (
-				CAC5D13C1BC53F85005399BB /* AppDelegate.h */,
-				CAC5D13D1BC53F85005399BB /* AppDelegate.m */,
-				CAC5D13F1BC53F85005399BB /* ViewController.h */,
-				CAC5D1401BC53F85005399BB /* ViewController.m */,
-				CAC5D1421BC53F85005399BB /* Main.storyboard */,
+				CAC5D13C1BC53F85005399BB /* ZCAppDelegate.h */,
+				CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */,
+				CAC5D1651BC54CD4005399BB /* ZCTabBarViewController.h */,
+				CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */,
+				CAC5D1621BC54722005399BB /* ZCHomeViewController.h */,
+				CAC5D1631BC54722005399BB /* ZCHomeViewController.m */,
+				CAC5D1681BC54E2D005399BB /* ZCMessageViewController.h */,
+				CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */,
+				CAC5D16B1BC553FD005399BB /* ZCDiscoverViewController.h */,
+				CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */,
+				CAC5D16E1BC55482005399BB /* ZCProfileTableViewController.h */,
+				CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */,
 				CAC5D1451BC53F85005399BB /* Images.xcassets */,
-				CAC5D1471BC53F85005399BB /* LaunchScreen.xib */,
 				CAC5D1381BC53F85005399BB /* Supporting Files */,
+				CAC5D15E1BC5404C005399BB /* 新浪微博独立-prefix.pch */,
 			);
 			path = "18-新浪微博独立01";
 			sourceTree = "<group>";
@@ -163,6 +179,7 @@
 		CAC5D12D1BC53F85005399BB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZC;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "闲人";
 				TargetAttributes = {
@@ -199,8 +216,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC5D1441BC53F85005399BB /* Main.storyboard in Resources */,
-				CAC5D1491BC53F85005399BB /* LaunchScreen.xib in Resources */,
 				CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +234,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC5D1411BC53F85005399BB /* ViewController.m in Sources */,
-				CAC5D13E1BC53F85005399BB /* AppDelegate.m in Sources */,
+				CAC5D1641BC54722005399BB /* ZCHomeViewController.m in Sources */,
+				CAC5D16A1BC54E2D005399BB /* ZCMessageViewController.m in Sources */,
+				CAC5D16D1BC553FD005399BB /* ZCDiscoverViewController.m in Sources */,
+				CAC5D13E1BC53F85005399BB /* ZCAppDelegate.m in Sources */,
+				CAC5D1701BC55482005399BB /* ZCProfileTableViewController.m in Sources */,
 				CAC5D13B1BC53F85005399BB /* main.m in Sources */,
+				CAC5D1671BC54CD4005399BB /* ZCTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,25 +261,6 @@
 			targetProxy = CAC5D14F1BC53F85005399BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CAC5D1421BC53F85005399BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC5D1431BC53F85005399BB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CAC5D1471BC53F85005399BB /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAC5D1481BC53F85005399BB /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CAC5D1561BC53F85005399BB /* Debug */ = {
@@ -349,6 +349,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/18-新浪微博独立01/新浪微博独立-prefix.pch";
 				INFOPLIST_FILE = "18-新浪微博独立01/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,6 +361,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/18-新浪微博独立01/新浪微博独立-prefix.pch";
 				INFOPLIST_FILE = "18-新浪微博独立01/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
