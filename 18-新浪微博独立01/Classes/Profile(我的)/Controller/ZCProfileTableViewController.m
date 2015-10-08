@@ -7,6 +7,7 @@
 //
 
 #import "ZCProfileTableViewController.h"
+#import "ZCTest-1ViewController.h"
 
 @interface ZCProfileTableViewController ()
 
@@ -17,11 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(setBtnDidClick)];
+}
+
+
+#pragma mark - 分出来的其他方法
+- (void)setBtnDidClick
+{
+    ZCTest_1ViewController  *test1 = [[ZCTest_1ViewController alloc] init];
+    test1.title = @"test1";
+    [self.navigationController pushViewController:test1 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CAC5D13B1BC53F85005399BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D13A1BC53F85005399BB /* main.m */; };
-		CAC5D13E1BC53F85005399BB /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */; };
 		CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC5D1451BC53F85005399BB /* Images.xcassets */; };
 		CAC5D1551BC53F85005399BB /* _8_______01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1541BC53F85005399BB /* _8_______01Tests.m */; };
-		CAC5D1641BC54722005399BB /* ZCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1631BC54722005399BB /* ZCHomeViewController.m */; };
-		CAC5D1671BC54CD4005399BB /* ZCTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */; };
-		CAC5D16A1BC54E2D005399BB /* ZCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */; };
-		CAC5D16D1BC553FD005399BB /* ZCDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */; };
-		CAC5D1701BC55482005399BB /* ZCProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */; };
+		CAC5D1AD1BC64041005399BB /* ZCDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1841BC64041005399BB /* ZCDiscoverViewController.m */; };
+		CAC5D1AE1BC64041005399BB /* ZCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D18A1BC64041005399BB /* ZCHomeViewController.m */; };
+		CAC5D1AF1BC64041005399BB /* ZCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1901BC64041005399BB /* ZCNavigationController.m */; };
+		CAC5D1B01BC64041005399BB /* ZCTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1921BC64041005399BB /* ZCTabBarViewController.m */; };
+		CAC5D1B11BC64041005399BB /* UIView+Extesion.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1951BC64041005399BB /* UIView+Extesion.m */; };
+		CAC5D1B21BC64041005399BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1981BC64041005399BB /* main.m */; };
+		CAC5D1B31BC64041005399BB /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D19A1BC64041005399BB /* ZCAppDelegate.m */; };
+		CAC5D1B41BC64041005399BB /* ZCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D19F1BC64041005399BB /* ZCMessageViewController.m */; };
+		CAC5D1B51BC64041005399BB /* ZCProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1A51BC64041005399BB /* ZCProfileTableViewController.m */; };
+		CAC5D1B61BC64041005399BB /* ZCTest-1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1AA1BC64041005399BB /* ZCTest-1ViewController.m */; };
+		CAC5D1B71BC64041005399BB /* ZCTest-2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1AC1BC64041005399BB /* ZCTest-2ViewController.m */; };
+		CAC5D1BA1BC643CB005399BB /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1B91BC643CB005399BB /* UIButton+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,24 +36,34 @@
 /* Begin PBXFileReference section */
 		CAC5D1351BC53F85005399BB /* 18-新浪微博独立01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "18-新浪微博独立01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC5D1391BC53F85005399BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CAC5D13A1BC53F85005399BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CAC5D13C1BC53F85005399BB /* ZCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCAppDelegate.h; sourceTree = "<group>"; };
-		CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCAppDelegate.m; sourceTree = "<group>"; };
 		CAC5D1451BC53F85005399BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CAC5D14E1BC53F85005399BB /* 18-新浪微博独立01Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "18-新浪微博独立01Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC5D1531BC53F85005399BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC5D1541BC53F85005399BB /* _8_______01Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_8_______01Tests.m"; sourceTree = "<group>"; };
 		CAC5D15E1BC5404C005399BB /* 新浪微博独立-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "新浪微博独立-prefix.pch"; sourceTree = "<group>"; };
-		CAC5D1621BC54722005399BB /* ZCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCHomeViewController.h; sourceTree = "<group>"; };
-		CAC5D1631BC54722005399BB /* ZCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCHomeViewController.m; sourceTree = "<group>"; };
-		CAC5D1651BC54CD4005399BB /* ZCTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTabBarViewController.h; sourceTree = "<group>"; };
-		CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTabBarViewController.m; sourceTree = "<group>"; };
-		CAC5D1681BC54E2D005399BB /* ZCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMessageViewController.h; sourceTree = "<group>"; };
-		CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMessageViewController.m; sourceTree = "<group>"; };
-		CAC5D16B1BC553FD005399BB /* ZCDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDiscoverViewController.h; sourceTree = "<group>"; };
-		CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDiscoverViewController.m; sourceTree = "<group>"; };
-		CAC5D16E1BC55482005399BB /* ZCProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCProfileTableViewController.h; sourceTree = "<group>"; };
-		CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCProfileTableViewController.m; sourceTree = "<group>"; };
+		CAC5D1831BC64041005399BB /* ZCDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDiscoverViewController.h; sourceTree = "<group>"; };
+		CAC5D1841BC64041005399BB /* ZCDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDiscoverViewController.m; sourceTree = "<group>"; };
+		CAC5D1891BC64041005399BB /* ZCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCHomeViewController.h; sourceTree = "<group>"; };
+		CAC5D18A1BC64041005399BB /* ZCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCHomeViewController.m; sourceTree = "<group>"; };
+		CAC5D18F1BC64041005399BB /* ZCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCNavigationController.h; sourceTree = "<group>"; };
+		CAC5D1901BC64041005399BB /* ZCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCNavigationController.m; sourceTree = "<group>"; };
+		CAC5D1911BC64041005399BB /* ZCTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCTabBarViewController.h; sourceTree = "<group>"; };
+		CAC5D1921BC64041005399BB /* ZCTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCTabBarViewController.m; sourceTree = "<group>"; };
+		CAC5D1941BC64041005399BB /* UIView+Extesion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extesion.h"; sourceTree = "<group>"; };
+		CAC5D1951BC64041005399BB /* UIView+Extesion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extesion.m"; sourceTree = "<group>"; };
+		CAC5D1981BC64041005399BB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CAC5D1991BC64041005399BB /* ZCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppDelegate.h; sourceTree = "<group>"; };
+		CAC5D19A1BC64041005399BB /* ZCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppDelegate.m; sourceTree = "<group>"; };
+		CAC5D19E1BC64041005399BB /* ZCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMessageViewController.h; sourceTree = "<group>"; };
+		CAC5D19F1BC64041005399BB /* ZCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMessageViewController.m; sourceTree = "<group>"; };
+		CAC5D1A41BC64041005399BB /* ZCProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCProfileTableViewController.h; sourceTree = "<group>"; };
+		CAC5D1A51BC64041005399BB /* ZCProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCProfileTableViewController.m; sourceTree = "<group>"; };
+		CAC5D1A91BC64041005399BB /* ZCTest-1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZCTest-1ViewController.h"; sourceTree = "<group>"; };
+		CAC5D1AA1BC64041005399BB /* ZCTest-1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZCTest-1ViewController.m"; sourceTree = "<group>"; };
+		CAC5D1AB1BC64041005399BB /* ZCTest-2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZCTest-2ViewController.h"; sourceTree = "<group>"; };
+		CAC5D1AC1BC64041005399BB /* ZCTest-2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZCTest-2ViewController.m"; sourceTree = "<group>"; };
+		CAC5D1B81BC643CB005399BB /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
+		CAC5D1B91BC643CB005399BB /* UIButton+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,19 +105,7 @@
 		CAC5D1371BC53F85005399BB /* 18-新浪微博独立01 */ = {
 			isa = PBXGroup;
 			children = (
-				CAC5D13C1BC53F85005399BB /* ZCAppDelegate.h */,
-				CAC5D13D1BC53F85005399BB /* ZCAppDelegate.m */,
-				CAC5D1651BC54CD4005399BB /* ZCTabBarViewController.h */,
-				CAC5D1661BC54CD4005399BB /* ZCTabBarViewController.m */,
-				CAC5D1621BC54722005399BB /* ZCHomeViewController.h */,
-				CAC5D1631BC54722005399BB /* ZCHomeViewController.m */,
-				CAC5D1681BC54E2D005399BB /* ZCMessageViewController.h */,
-				CAC5D1691BC54E2D005399BB /* ZCMessageViewController.m */,
-				CAC5D16B1BC553FD005399BB /* ZCDiscoverViewController.h */,
-				CAC5D16C1BC553FD005399BB /* ZCDiscoverViewController.m */,
-				CAC5D16E1BC55482005399BB /* ZCProfileTableViewController.h */,
-				CAC5D16F1BC55482005399BB /* ZCProfileTableViewController.m */,
-				CAC5D1451BC53F85005399BB /* Images.xcassets */,
+				CAC5D1801BC64041005399BB /* Classes */,
 				CAC5D1381BC53F85005399BB /* Supporting Files */,
 				CAC5D15E1BC5404C005399BB /* 新浪微博独立-prefix.pch */,
 			);
@@ -112,8 +115,8 @@
 		CAC5D1381BC53F85005399BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CAC5D1451BC53F85005399BB /* Images.xcassets */,
 				CAC5D1391BC53F85005399BB /* Info.plist */,
-				CAC5D13A1BC53F85005399BB /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -133,6 +136,220 @@
 				CAC5D1531BC53F85005399BB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CAC5D1801BC64041005399BB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D18D1BC64041005399BB /* Main(主要) */,
+				CAC5D1871BC64041005399BB /* Home(首页) */,
+				CAC5D19C1BC64041005399BB /* Message(信息) */,
+				CAC5D1811BC64041005399BB /* Discover(发现) */,
+				CAC5D1A21BC64041005399BB /* Profile(我的) */,
+				CAC5D1A81BC64041005399BB /* Test(测试) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CAC5D1811BC64041005399BB /* Discover(发现) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1821BC64041005399BB /* Controller */,
+				CAC5D1851BC64041005399BB /* Model */,
+				CAC5D1861BC64041005399BB /* View */,
+			);
+			path = "Discover(发现)";
+			sourceTree = "<group>";
+		};
+		CAC5D1821BC64041005399BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1831BC64041005399BB /* ZCDiscoverViewController.h */,
+				CAC5D1841BC64041005399BB /* ZCDiscoverViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC5D1851BC64041005399BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC5D1861BC64041005399BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC5D1871BC64041005399BB /* Home(首页) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1881BC64041005399BB /* Controller */,
+				CAC5D18B1BC64041005399BB /* Model */,
+				CAC5D18C1BC64041005399BB /* View */,
+			);
+			path = "Home(首页)";
+			sourceTree = "<group>";
+		};
+		CAC5D1881BC64041005399BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1891BC64041005399BB /* ZCHomeViewController.h */,
+				CAC5D18A1BC64041005399BB /* ZCHomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC5D18B1BC64041005399BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC5D18C1BC64041005399BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC5D18D1BC64041005399BB /* Main(主要) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D18E1BC64041005399BB /* Controller */,
+				CAC5D1931BC64041005399BB /* Gategory */,
+				CAC5D1961BC64041005399BB /* Model */,
+				CAC5D1971BC64041005399BB /* Other */,
+				CAC5D19B1BC64041005399BB /* View */,
+			);
+			path = "Main(主要)";
+			sourceTree = "<group>";
+		};
+		CAC5D18E1BC64041005399BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D18F1BC64041005399BB /* ZCNavigationController.h */,
+				CAC5D1901BC64041005399BB /* ZCNavigationController.m */,
+				CAC5D1911BC64041005399BB /* ZCTabBarViewController.h */,
+				CAC5D1921BC64041005399BB /* ZCTabBarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC5D1931BC64041005399BB /* Gategory */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1941BC64041005399BB /* UIView+Extesion.h */,
+				CAC5D1951BC64041005399BB /* UIView+Extesion.m */,
+				CAC5D1B81BC643CB005399BB /* UIButton+Extension.h */,
+				CAC5D1B91BC643CB005399BB /* UIButton+Extension.m */,
+			);
+			path = Gategory;
+			sourceTree = "<group>";
+		};
+		CAC5D1961BC64041005399BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC5D1971BC64041005399BB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1981BC64041005399BB /* main.m */,
+				CAC5D1991BC64041005399BB /* ZCAppDelegate.h */,
+				CAC5D19A1BC64041005399BB /* ZCAppDelegate.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		CAC5D19B1BC64041005399BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC5D19C1BC64041005399BB /* Message(信息) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D19D1BC64041005399BB /* Controller */,
+				CAC5D1A01BC64041005399BB /* Model */,
+				CAC5D1A11BC64041005399BB /* View */,
+			);
+			path = "Message(信息)";
+			sourceTree = "<group>";
+		};
+		CAC5D19D1BC64041005399BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D19E1BC64041005399BB /* ZCMessageViewController.h */,
+				CAC5D19F1BC64041005399BB /* ZCMessageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC5D1A01BC64041005399BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC5D1A11BC64041005399BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC5D1A21BC64041005399BB /* Profile(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1A31BC64041005399BB /* Controller */,
+				CAC5D1A61BC64041005399BB /* Model */,
+				CAC5D1A71BC64041005399BB /* View */,
+			);
+			path = "Profile(我的)";
+			sourceTree = "<group>";
+		};
+		CAC5D1A31BC64041005399BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1A41BC64041005399BB /* ZCProfileTableViewController.h */,
+				CAC5D1A51BC64041005399BB /* ZCProfileTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CAC5D1A61BC64041005399BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CAC5D1A71BC64041005399BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CAC5D1A81BC64041005399BB /* Test(测试) */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5D1A91BC64041005399BB /* ZCTest-1ViewController.h */,
+				CAC5D1AA1BC64041005399BB /* ZCTest-1ViewController.m */,
+				CAC5D1AB1BC64041005399BB /* ZCTest-2ViewController.h */,
+				CAC5D1AC1BC64041005399BB /* ZCTest-2ViewController.m */,
+			);
+			path = "Test(测试)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,13 +451,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC5D1641BC54722005399BB /* ZCHomeViewController.m in Sources */,
-				CAC5D16A1BC54E2D005399BB /* ZCMessageViewController.m in Sources */,
-				CAC5D16D1BC553FD005399BB /* ZCDiscoverViewController.m in Sources */,
-				CAC5D13E1BC53F85005399BB /* ZCAppDelegate.m in Sources */,
-				CAC5D1701BC55482005399BB /* ZCProfileTableViewController.m in Sources */,
-				CAC5D13B1BC53F85005399BB /* main.m in Sources */,
-				CAC5D1671BC54CD4005399BB /* ZCTabBarViewController.m in Sources */,
+				CAC5D1B61BC64041005399BB /* ZCTest-1ViewController.m in Sources */,
+				CAC5D1BA1BC643CB005399BB /* UIButton+Extension.m in Sources */,
+				CAC5D1B01BC64041005399BB /* ZCTabBarViewController.m in Sources */,
+				CAC5D1B71BC64041005399BB /* ZCTest-2ViewController.m in Sources */,
+				CAC5D1AF1BC64041005399BB /* ZCNavigationController.m in Sources */,
+				CAC5D1AE1BC64041005399BB /* ZCHomeViewController.m in Sources */,
+				CAC5D1B31BC64041005399BB /* ZCAppDelegate.m in Sources */,
+				CAC5D1B41BC64041005399BB /* ZCMessageViewController.m in Sources */,
+				CAC5D1B11BC64041005399BB /* UIView+Extesion.m in Sources */,
+				CAC5D1AD1BC64041005399BB /* ZCDiscoverViewController.m in Sources */,
+				CAC5D1B21BC64041005399BB /* main.m in Sources */,
+				CAC5D1B51BC64041005399BB /* ZCProfileTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
