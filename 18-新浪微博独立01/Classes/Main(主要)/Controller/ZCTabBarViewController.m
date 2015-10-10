@@ -12,9 +12,10 @@
 #import "ZCDiscoverViewController.h"
 #import "ZCProfileTableViewController.h"
 #import "ZCNavigationController.h"
+#import "ZCTabBar.h"
 
-@interface ZCTabBarViewController ()
-
+@interface ZCTabBarViewController ()<ZCTabBarDelegate>
+@property(nonatomic, weak) UIViewController *vc;
 @end
 
 @implementation ZCTabBarViewController
@@ -42,13 +43,11 @@
     [self addChildVc:mine title:@"我" normalImage:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
 //    ZCNavigationController *navMine = [[ZCNavigationController alloc] initWithRootViewController:mine];
 
-
-
-
-//    [self addChildViewController:navHome];
-//    [self addChildViewController:navMessages];
-//    [self addChildViewController:navDiscover];
-//    [self addChildViewController:navMine];
+    // 更换系统自带的tabbar
+    
+    ZCTabBar *tabBar = [[ZCTabBar alloc] init];
+    tabBar.delegate = self;
+    [self setValue:tabBar forKey:@"tabBar"];
 
     
 
@@ -66,6 +65,9 @@
     ChiledVc.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     ChiledVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
+    
+    
+    
     // 设置文字
     NSMutableDictionary *attbsTitlt = [[NSMutableDictionary alloc] init];
     attbsTitlt[NSFontAttributeName] = [UIFont systemFontOfSize:12];
@@ -82,6 +84,22 @@
     
     [self addChildViewController:nav];
     
+}
+
+#pragma mark - 代理方法
+- (void)tabBarDidClickPullBtn:(ZCTabBar *)pullBtn
+{
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = kZCRandomColor;
+    self.vc = vc;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    [self.vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 
