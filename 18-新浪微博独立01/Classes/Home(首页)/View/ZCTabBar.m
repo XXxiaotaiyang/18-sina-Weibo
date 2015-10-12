@@ -51,8 +51,8 @@
     NSUInteger index = 0;
     CGFloat width = self.width / tabBarCount;
     
-    self.btn.centenX = self.width * 0.5;
-    self.btn.centenY = self.height * 0.5;
+    self.btn.centerX = self.width * 0.5;
+    self.btn.centerY = self.height * 0.5;
     
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {

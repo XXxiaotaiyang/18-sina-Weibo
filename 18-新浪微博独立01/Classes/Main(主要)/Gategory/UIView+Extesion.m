@@ -41,7 +41,7 @@
 
 
 
-- (void)setCentenX:(CGFloat)centenX
+- (void)setCenterX:(CGFloat)centenX
 {
     CGPoint centenr = self.center;
     centenr.x = centenX;
@@ -56,19 +56,19 @@
     
 }
 
-- (CGFloat)centenX
+- (CGFloat)centerX
 {
     return self.center.x;
 }
 
-- (void)setCentenY:(CGFloat)centenY
+- (void)setCenterY:(CGFloat)centenY
 {
     CGPoint centenr = self.center;
     centenr.y = centenY;
     self.center = centenr;
 }
 
-- (CGFloat)centenY
+- (CGFloat)centerY
 {
     return self.center.y;
 }

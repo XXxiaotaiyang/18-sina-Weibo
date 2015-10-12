@@ -64,7 +64,7 @@
     CGRect newFram = [View convertRect:View.bounds toView:window];
 
     self.imageView.y = CGRectGetMaxY(newFram);
-    self.imageView.centenX = newFram.origin.x + newFram.size.width / 2;
+    self.imageView.centerX = newFram.origin.x + newFram.size.width / 2;
 
 
     [window addSubview:self];

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA476C371BC8F925005E6283 /* ZCOAuthViewCOntroller.m in Sources */ = {isa = PBXBuildFile; fileRef = CA476C361BC8F925005E6283 /* ZCOAuthViewCOntroller.m */; };
+		CA476C3E1BC93F3C005E6283 /* MBProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = CA476C3A1BC93F3C005E6283 /* MBProgressHUD+NJ.m */; };
+		CA476C3F1BC93F3C005E6283 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA476C3B1BC93F3C005E6283 /* MBProgressHUD.bundle */; };
+		CA476C401BC93F3C005E6283 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA476C3D1BC93F3C005E6283 /* MBProgressHUD.m */; };
+		CA476C431BC94C83005E6283 /* ZCAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = CA476C421BC94C83005E6283 /* ZCAccount.m */; };
+		CA9DD8961BC8CDBB00C0E0D2 /* ZCNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9DD8951BC8CDBB00C0E0D2 /* ZCNewFeatureController.m */; };
 		CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAC5D1451BC53F85005399BB /* Images.xcassets */; };
 		CAC5D1551BC53F85005399BB /* _8_______01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1541BC53F85005399BB /* _8_______01Tests.m */; };
 		CAC5D1AD1BC64041005399BB /* ZCDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC5D1841BC64041005399BB /* ZCDiscoverViewController.m */; };
@@ -59,6 +65,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA476C351BC8F925005E6283 /* ZCOAuthViewCOntroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCOAuthViewCOntroller.h; sourceTree = "<group>"; };
+		CA476C361BC8F925005E6283 /* ZCOAuthViewCOntroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCOAuthViewCOntroller.m; sourceTree = "<group>"; };
+		CA476C391BC93F3C005E6283 /* MBProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+NJ.h"; sourceTree = "<group>"; };
+		CA476C3A1BC93F3C005E6283 /* MBProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+NJ.m"; sourceTree = "<group>"; };
+		CA476C3B1BC93F3C005E6283 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		CA476C3C1BC93F3C005E6283 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CA476C3D1BC93F3C005E6283 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CA476C411BC94C83005E6283 /* ZCAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAccount.h; sourceTree = "<group>"; };
+		CA476C421BC94C83005E6283 /* ZCAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAccount.m; sourceTree = "<group>"; };
+		CA9DD8941BC8CDBB00C0E0D2 /* ZCNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCNewFeatureController.h; sourceTree = "<group>"; };
+		CA9DD8951BC8CDBB00C0E0D2 /* ZCNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCNewFeatureController.m; sourceTree = "<group>"; };
 		CAC5D1351BC53F85005399BB /* 18-新浪微博独立01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "18-新浪微博独立01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAC5D1391BC53F85005399BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC5D1451BC53F85005399BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -164,6 +181,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA476C341BC8F8BD005E6283 /* OAuth(授权) */ = {
+			isa = PBXGroup;
+			children = (
+				CA476C451BC94CA0005E6283 /* Controller */,
+				CA476C441BC94C89005E6283 /* Model */,
+			);
+			name = "OAuth(授权)";
+			sourceTree = "<group>";
+		};
+		CA476C381BC93F3C005E6283 /* MBProgressHUD蒙版和提醒 */ = {
+			isa = PBXGroup;
+			children = (
+				CA476C391BC93F3C005E6283 /* MBProgressHUD+NJ.h */,
+				CA476C3A1BC93F3C005E6283 /* MBProgressHUD+NJ.m */,
+				CA476C3B1BC93F3C005E6283 /* MBProgressHUD.bundle */,
+				CA476C3C1BC93F3C005E6283 /* MBProgressHUD.h */,
+				CA476C3D1BC93F3C005E6283 /* MBProgressHUD.m */,
+			);
+			path = "MBProgressHUD蒙版和提醒";
+			sourceTree = "<group>";
+		};
+		CA476C441BC94C89005E6283 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA476C411BC94C83005E6283 /* ZCAccount.h */,
+				CA476C421BC94C83005E6283 /* ZCAccount.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CA476C451BC94CA0005E6283 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA476C351BC8F925005E6283 /* ZCOAuthViewCOntroller.h */,
+				CA476C361BC8F925005E6283 /* ZCOAuthViewCOntroller.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		CA9DD8931BC8CCD300C0E0D2 /* Newfeature(新特性) */ = {
+			isa = PBXGroup;
+			children = (
+				CA9DD8941BC8CDBB00C0E0D2 /* ZCNewFeatureController.h */,
+				CA9DD8951BC8CDBB00C0E0D2 /* ZCNewFeatureController.m */,
+			);
+			name = "Newfeature(新特性)";
+			sourceTree = "<group>";
+		};
 		CAC5D12C1BC53F85005399BB = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +286,8 @@
 		CAC5D1801BC64041005399BB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CA476C341BC8F8BD005E6283 /* OAuth(授权) */,
+				CA9DD8931BC8CCD300C0E0D2 /* Newfeature(新特性) */,
 				CAC5D18D1BC64041005399BB /* Main(主要) */,
 				CAC5D1871BC64041005399BB /* Home(首页) */,
 				CAC5D19C1BC64041005399BB /* Message(信息) */,
@@ -305,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				CAE3EEB41BC7EE270068B79F /* 第三方框架 */,
-				CAE3EED81BC8BC990068B79F /* Masonry */,
 				CAC5D18E1BC64041005399BB /* Controller */,
 				CAC5D1931BC64041005399BB /* Gategory */,
 				CAC5D1961BC64041005399BB /* Model */,
@@ -447,6 +513,8 @@
 		CAE3EEB41BC7EE270068B79F /* 第三方框架 */ = {
 			isa = PBXGroup;
 			children = (
+				CA476C381BC93F3C005E6283 /* MBProgressHUD蒙版和提醒 */,
+				CAE3EED81BC8BC990068B79F /* Masonry */,
 				CAE3EEBB1BC8BC850068B79F /* AFNetworking */,
 			);
 			name = "第三方框架";
@@ -594,6 +662,7 @@
 			files = (
 				CAE3EEF31BC8BC990068B79F /* Info.plist in Resources */,
 				CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */,
+				CA476C3F1BC93F3C005E6283 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +687,7 @@
 				CAC5D1BA1BC643CB005399BB /* UIButton+Extension.m in Sources */,
 				CAE3EEFA1BC8BC990068B79F /* NSArray+MASAdditions.m in Sources */,
 				CAC5D1B01BC64041005399BB /* ZCTabBarViewController.m in Sources */,
+				CA476C401BC93F3C005E6283 /* MBProgressHUD.m in Sources */,
 				CAC5D1B71BC64041005399BB /* ZCTest-2ViewController.m in Sources */,
 				CAE3EED11BC8BC850068B79F /* AFHTTPSessionManager.m in Sources */,
 				CAC5D1AF1BC64041005399BB /* ZCNavigationController.m in Sources */,
@@ -634,6 +704,7 @@
 				CAC5D1B31BC64041005399BB /* ZCAppDelegate.m in Sources */,
 				CAE3EED41BC8BC850068B79F /* AFURLConnectionOperation.m in Sources */,
 				CAE3EED61BC8BC850068B79F /* AFURLResponseSerialization.m in Sources */,
+				CA9DD8961BC8CDBB00C0E0D2 /* ZCNewFeatureController.m in Sources */,
 				CAC5D1B41BC64041005399BB /* ZCMessageViewController.m in Sources */,
 				CAE3EED51BC8BC850068B79F /* AFURLRequestSerialization.m in Sources */,
 				CAC5D1B11BC64041005399BB /* UIView+Extesion.m in Sources */,
@@ -641,10 +712,13 @@
 				CAE3EEF81BC8BC990068B79F /* MASViewAttribute.m in Sources */,
 				CAE3EEF71BC8BC990068B79F /* MASLayoutConstraint.m in Sources */,
 				CAC5D1B21BC64041005399BB /* main.m in Sources */,
+				CA476C3E1BC93F3C005E6283 /* MBProgressHUD+NJ.m in Sources */,
 				CAE3EEBA1BC8AE850068B79F /* ZCButton.m in Sources */,
 				CAE3EEF41BC8BC990068B79F /* MASCompositeConstraint.m in Sources */,
+				CA476C371BC8F925005E6283 /* ZCOAuthViewCOntroller.m in Sources */,
 				CAE3EEB71BC89BAF0068B79F /* ZCTabBar.m in Sources */,
 				CAE3EED01BC8BC850068B79F /* AFHTTPRequestOperationManager.m in Sources */,
+				CA476C431BC94C83005E6283 /* ZCAccount.m in Sources */,
 				CAE3EED31BC8BC850068B79F /* AFSecurityPolicy.m in Sources */,
 				CAC5D1B51BC64041005399BB /* ZCProfileTableViewController.m in Sources */,
 			);
@@ -758,6 +832,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/18-新浪微博独立01/新浪微博独立-prefix.pch";
 				INFOPLIST_FILE = "18-新浪微博独立01/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -770,6 +845,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/18-新浪微博独立01/新浪微博独立-prefix.pch";
 				INFOPLIST_FILE = "18-新浪微博独立01/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
