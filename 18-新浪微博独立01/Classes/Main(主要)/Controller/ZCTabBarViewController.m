@@ -13,6 +13,8 @@
 #import "ZCProfileTableViewController.h"
 #import "ZCNavigationController.h"
 #import "ZCTabBar.h"
+#import "ZCAccountTool.h"
+#import "ZCAccount.h"
 
 @interface ZCTabBarViewController ()<ZCTabBarDelegate>
 @property(nonatomic, weak) UIViewController *vc;
@@ -58,13 +60,12 @@
 {
 //    ChiledVc.view.backgroundColor = kZCRandomColor;
     
-    // 下面两句可以合成一句
-//    ChiledVc.title = title;
+
     ChiledVc.tabBarItem.title = title;  // 设置tabbar的文字
     ChiledVc.navigationItem.title = title; // 设置navigationItem的文字
     ChiledVc.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     ChiledVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+
     
     
     

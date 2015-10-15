@@ -10,9 +10,20 @@
 #import "ZCPullDownViewController.h"
 #import "ZCPullDownView.h"
 #import "ZCButton.h"
+#import "ZCAccountTool.h"
+#import "AFNetworking.h"
+#import "ZCAccount.h"
+#import "UIImageView+WebCache.h"
+#import "ZCStatues.h"
+#import "ZCUser.h"
+#import "MJExtension.h"
 
 @interface ZCHomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, weak) ZCPullDownView *pulldown;
+@property(nonatomic, weak) ZCButton *homeBtn;
+
+// 定义一个用来存放微博的status
+@property(nonatomic, strong) NSMutableArray *statuses;
 @end
 
 @implementation ZCHomeViewController
@@ -20,13 +31,157 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 设置导航栏
-    [self setupNavigationItem];
+    // 获取用户信息
+    [self setupUserInfo];
+    
+    // 加载新微博
+    [self loadNewStatus];
+    
+    // 下来刷新
+    [self setupRefresh];
+    
+    
+    
     
     
 }
 
+- (void)setupRefresh
+{
+    UIRefreshControl *reCol = [[UIRefreshControl alloc] init];
+    [reCol addTarget:self action:@selector(refreshStatusChange:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:reCol];
+}
+/**
+ *  下啦刷新功能实现
+ */
+- (void)refreshStatusChange:(UIRefreshControl *)col
+{
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.拼接请求参数
+    ZCAccount *account = [ZCAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    
+    // 取出最前面的微博（最新的微博，ID最大的微博）
+    ZCStatues *firstStatus = [self.statuses firstObject];
+    // 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
+    params[@"since_id"] = firstStatus.idstr;
+    
+    
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *newStatuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        
+        // 将最新的微博数据，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        
+        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+
+        [self.statuses insertObjects:newStatuses atIndexes:set];
+//        [self.statuses insertObjects:newStatuses atIndexes:set];
+        
+        
+
+
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        [col endRefreshing];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [col endRefreshing];
+    }];
+    
+
+    
+    [col endRefreshing];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // 设置导航栏
+    [self setupNavigationItem];
+    
+   
+}
+
 #pragma mark - setup的方法
+
+/**
+ *  加载新微博
+ */
+- (void)loadNewStatus
+{
+//    https://api.weibo.com/2/statuses/friends_timeline.json
+    
+    AFHTTPRequestOperationManager *mag = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    ZCAccount *account =  [ZCAccountTool account];
+    parameters[@"access_token"] = account.access_token;
+    parameters[@"count"] = @30;
+    
+    
+    [mag GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        
+        NSLog(@"到了获取用户的这个地方");
+        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        // 刷新一下表格了
+        [self.tableView reloadData];
+        
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+}
+
+- (void)setupUserInfo
+{
+
+    
+    //    https://api.weibo.com/2/users/show.json
+    AFHTTPRequestOperationManager *mag = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    ZCAccount *account =  [ZCAccountTool account];
+    parameters[@"access_token"] = account.access_token;
+    parameters[@"uid"] = account.uid;
+    
+    
+    [mag GET:@"https://api.weibo.com/2/users/show.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        NSString *name = responseObject[@"name"];
+        
+        ZCButton *homeBtn = [[ZCButton alloc] init];
+        self.homeBtn = homeBtn;
+        
+        [homeBtn setTitle:name?name:@"首页" forState:UIControlStateNormal];
+        [homeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [homeBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+        [homeBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
+        
+        // 设置为粗体
+        [homeBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        
+        homeBtn.height = 30;
+        self.navigationItem.titleView = homeBtn;
+        
+        // 监听btn按钮的点击
+        [homeBtn addTarget:self action:@selector(homeBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+
+        
+        // 存储到沙盒中
+        account.name = name;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+}
+
 - (void)setupNavigationItem
 {
     
@@ -38,21 +193,7 @@
     self.navigationItem.rightBarButtonItem = [popBtn itemWithImage:@"navigationbar_pop" highImage:@"navigationbar_pop_highlighted" target:self action:@selector(popDidClick)];
     
     // 设置标题文字的点击样式
-    ZCButton *homeBtn = [[ZCButton alloc] init];
-//    UIButton *homeBtn = [[UIButton alloc] init];
-    [homeBtn setTitle:@"首页测试" forState:UIControlStateNormal];
-    [homeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [homeBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
-    [homeBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateSelected];
 
-    // 设置为粗体
-    [homeBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    
-    homeBtn.height = 30;
-    self.navigationItem.titleView = homeBtn;
-    
-    // 监听btn按钮的点击
-    [homeBtn addTarget:self action:@selector(homeBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -75,6 +216,8 @@
  */
 - (void)homeBtnDidClick:(UIButton *)btn
 {
+//    btn.selected = !btn.isSelected;
+    
     // 创建下啦菜单
   
     ZCPullDownView *pullView = [[ZCPullDownView alloc] init];
@@ -101,7 +244,8 @@
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    NSLog(@"%lu",(unsigned long)self.statuses.count);
+    return self.statuses.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +254,21 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     }
+    
+    // 取出weibo
+    ZCStatues *statuses = self.statuses[indexPath.row];
+    ZCUser *user = statuses.user;
+//    NSString *name = user[@"name"];
+    
+    cell.textLabel.text = user.name;
+    cell.detailTextLabel.text = statuses.text;
+    
+    // 设置图片
+    NSString *imageUrl = user.profile_image_url;
+    UIImage *placehoder = [UIImage imageNamed:@"avatar_default_small"];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placehoder];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

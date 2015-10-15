@@ -12,6 +12,7 @@
 #import "ZCAccount.h"
 #import "ZCTabBarViewController.h"
 #import "ZCNewFeatureController.h"
+#import "ZCAccountTool.h"
 
 @interface ZCOAuthViewCOntroller ()<UIWebViewDelegate>
 
@@ -97,17 +98,20 @@
         
         [MBProgressHUD showSuccess:@"获取成功"];
         
-        // 沙盒路径
-//        NSString *doc = [NSString stringWithFormat:@"%@/%@",NSHomeDirectory(), @"Documents"];
-        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
-        
-        NSLog(@"%@",path);
-        // 存进沙盒
+//        // 沙盒路径
+////        NSString *doc = [NSString stringWithFormat:@"%@/%@",NSHomeDirectory(), @"Documents"];
+//        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
+//        
+//        NSLog(@"%@",path);
+//        // 存进沙盒
         ZCAccount *account = [ZCAccount accountWithDict:responseObject];
         
-        // 存放自定义对象用 NSKeyedArchiver
-        [NSKeyedArchiver archiveRootObject:account toFile:path];
+        // 存储帐号信息
+        [ZCAccountTool saveAccount:account];
+        
+//        // 存放自定义对象用 NSKeyedArchiver
+//        [NSKeyedArchiver archiveRootObject:account toFile:path];
         
         // 切换窗口的跟控制器
         NSString *key = @"CFBundleVersion";

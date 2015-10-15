@@ -15,6 +15,7 @@
     account.access_token = dict[@"access_token"];
     account.uid = dict[@"uid"];
     account.expires_in = dict[@"expires_in"];
+    account.name = dict[@"name"];
     return account;
 }
 /**
@@ -26,6 +27,7 @@
     [encoder encodeObject:self.access_token forKey:@"access_token"];
     [encoder encodeObject:self.expires_in forKey:@"expires_in"];
     [encoder encodeObject:self.uid forKey:@"uid"];
+    [encoder encodeObject:self.name forKey:@"name"];
 }
 /**
  *  当从沙盒中解档一个对象时（从沙盒中加载一个对象时），就会调用这个方法
@@ -37,6 +39,7 @@
         self.access_token = [decoder decodeObjectForKey:@"access_token"];
         self.expires_in = [decoder decodeObjectForKey:@"expires_in"];
         self.uid = [decoder decodeObjectForKey:@"uid"];
+        self.name = [decoder decodeObjectForKey:@"name"];
     }
     return self;
 }

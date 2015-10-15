@@ -11,6 +11,7 @@
 #import "ZCAccount.h"
 #import "ZCTabBarViewController.h"
 #import "ZCNewFeatureController.h"
+#import "ZCAccountTool.h"
 
 @interface ZCAppDelegate ()
 
@@ -26,9 +27,8 @@
     self.window.frame = [UIScreen mainScreen].bounds;
 
     // 沙盒路径
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *path = [doc stringByAppendingPathComponent:@"account.archive"];
-    ZCAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+
+    ZCAccount *account = [ZCAccountTool account];
     
     if (account) { // 之前已经登录成功过
         NSString *key = @"CFBundleVersion";
