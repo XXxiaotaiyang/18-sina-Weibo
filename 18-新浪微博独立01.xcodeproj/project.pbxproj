@@ -53,6 +53,8 @@
 		CADE0E8B1BCE9A650006FAF4 /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = CADE0E801BCE9A650006FAF4 /* NSObject+MJMember.m */; };
 		CADE0E8E1BCE9A770006FAF4 /* ZCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CADE0E8D1BCE9A770006FAF4 /* ZCUser.m */; };
 		CADE0E911BCE9A850006FAF4 /* ZCStatues.m in Sources */ = {isa = PBXBuildFile; fileRef = CADE0E901BCE9A850006FAF4 /* ZCStatues.m */; };
+		CAE15F501BD33F6F003E0D13 /* ZCLoadMoreFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE15F4F1BD33F6F003E0D13 /* ZCLoadMoreFooter.m */; };
+		CAE15F541BD33FB7003E0D13 /* ZCLoadMoreFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE15F531BD33FB7003E0D13 /* ZCLoadMoreFooter.xib */; };
 		CAE3EC9E1BC7DB550068B79F /* ZCPullDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE3EC9D1BC7DB550068B79F /* ZCPullDownViewController.m */; };
 		CAE3ECA11BC7DD290068B79F /* ZCPullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE3ECA01BC7DD290068B79F /* ZCPullDownView.m */; };
 		CAE3EEB71BC89BAF0068B79F /* ZCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE3EEB61BC89BAF0068B79F /* ZCTabBar.m */; };
@@ -191,6 +193,9 @@
 		CADE0E8D1BCE9A770006FAF4 /* ZCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCUser.m; sourceTree = "<group>"; };
 		CADE0E8F1BCE9A850006FAF4 /* ZCStatues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCStatues.h; sourceTree = "<group>"; };
 		CADE0E901BCE9A850006FAF4 /* ZCStatues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCStatues.m; sourceTree = "<group>"; };
+		CAE15F4E1BD33F6F003E0D13 /* ZCLoadMoreFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCLoadMoreFooter.h; sourceTree = "<group>"; };
+		CAE15F4F1BD33F6F003E0D13 /* ZCLoadMoreFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCLoadMoreFooter.m; sourceTree = "<group>"; };
+		CAE15F531BD33FB7003E0D13 /* ZCLoadMoreFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZCLoadMoreFooter.xib; sourceTree = "<group>"; };
 		CAE3EC9C1BC7DB550068B79F /* ZCPullDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPullDownViewController.h; sourceTree = "<group>"; };
 		CAE3EC9D1BC7DB550068B79F /* ZCPullDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPullDownViewController.m; sourceTree = "<group>"; };
 		CAE3EC9F1BC7DD290068B79F /* ZCPullDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZCPullDownView.h; path = ../Controller/ZCPullDownView.h; sourceTree = "<group>"; };
@@ -426,6 +431,9 @@
 				CAE3EC9D1BC7DB550068B79F /* ZCPullDownViewController.m */,
 				CAE3EC9F1BC7DD290068B79F /* ZCPullDownView.h */,
 				CAE3ECA01BC7DD290068B79F /* ZCPullDownView.m */,
+				CAE15F4E1BD33F6F003E0D13 /* ZCLoadMoreFooter.h */,
+				CAE15F4F1BD33F6F003E0D13 /* ZCLoadMoreFooter.m */,
+				CAE15F531BD33FB7003E0D13 /* ZCLoadMoreFooter.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -850,6 +858,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE15F541BD33FB7003E0D13 /* ZCLoadMoreFooter.xib in Resources */,
 				CAE3EEF31BC8BC990068B79F /* Info.plist in Resources */,
 				CAC5D1461BC53F85005399BB /* Images.xcassets in Resources */,
 				CA476C3F1BC93F3C005E6283 /* MBProgressHUD.bundle in Resources */,
@@ -880,6 +889,7 @@
 				CAE3EC9E1BC7DB550068B79F /* ZCPullDownViewController.m in Sources */,
 				CADE0E601BCE94670006FAF4 /* SDWebImageManager.m in Sources */,
 				CAE420661BC79CEC007FABBF /* ZCSearchTool.m in Sources */,
+				CAE15F501BD33F6F003E0D13 /* ZCLoadMoreFooter.m in Sources */,
 				CAC5D1B61BC64041005399BB /* ZCTest-1ViewController.m in Sources */,
 				CAC5D1BA1BC643CB005399BB /* UIButton+Extension.m in Sources */,
 				CADE0E841BCE9A650006FAF4 /* MJIvar.m in Sources */,

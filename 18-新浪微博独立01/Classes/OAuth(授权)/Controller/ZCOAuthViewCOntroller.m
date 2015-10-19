@@ -38,7 +38,7 @@
     // 用刚才创建的webView加载登录页面  新浪提供
 //    OAuth2的authorize接口
 //    https://api.weibo.com/oauth2/authorize
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=3109064050&redirect_uri=http://www.baidu.com"];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=3506418743&redirect_uri=http://www.baidu.com"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
     
@@ -77,6 +77,11 @@
     //    App Key：3109064050
     //    App Secret：58bc6bde69bf6cc299711c181dbc22b8
     
+    
+    //    App Key：3506418743
+    //    App Secret：9c26aadefcf039abcae273f2d63c4ae0
+
+    
 //    必选	类型及范围	说明
 //    client_id	true	string	申请应用时分配的AppKey。
 //    client_secret	true	string	申请应用时分配的AppSecret。
@@ -87,8 +92,8 @@
 //    code	true	string	调用authorize获得的code值。
 //    redirect_uri	true	string	回调地址，需需与注册应用里的回调地址一致。
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"client_id"] = @"3109064050";
-    parameters[@"client_secret"] = @"58bc6bde69bf6cc299711c181dbc22b8";
+    parameters[@"client_id"] = @"3506418743";
+    parameters[@"client_secret"] = @"9c26aadefcf039abcae273f2d63c4ae0";
     parameters[@"grant_type"] = @"authorization_code";
     parameters[@"code"] = code;
     parameters[@"redirect_uri"] = @"http://www.baidu.com";

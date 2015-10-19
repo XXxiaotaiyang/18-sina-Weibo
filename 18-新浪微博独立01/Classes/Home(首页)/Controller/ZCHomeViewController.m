@@ -17,6 +17,7 @@
 #import "ZCStatues.h"
 #import "ZCUser.h"
 #import "MJExtension.h"
+#import "ZCLoadMoreFooter.h"
 
 @interface ZCHomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, weak) ZCPullDownView *pulldown;
@@ -31,26 +32,151 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     // 获取用户信息
     [self setupUserInfo];
     
     // 加载新微博
-    [self loadNewStatus];
+    // 将下啦刷新和刷新集成到一块  刚上来就刷新  这样可以省点代码
+//    [self loadNewStatus];
     
     // 下来刷新
-    [self setupRefresh];
+    [self setupDownRefresh];
     
+    //上啦刷新空间
+    [self setupUpRefresh];
     
+    // 显示未读消息
+//    self.tabBarItem.badgeValue = @"1";
+//    int count = 10;
+//    NSString *statusC = [NSString stringWithFormat:@"%d", count];
+//    if ([statusC isEqualToString:@"0"]) {
+//        self.tabBarItem.badgeValue = nil;
+//        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+//    }else{
+//        self.tabBarItem.badgeValue = statusC;
+//        [UIApplication sharedApplication].applicationIconBadgeNumber = statusC.intValue;
+//    }
     
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setupUnreadeCount) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+}
+
+- (void)setupUnreadeCount
+{
+//    NSLog(@"setupUnreadeCount");
+    
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.拼接请求参数
+    ZCAccount *account = [ZCAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    params[@"uid"] = account.uid;
+    
+    // 3.发送请求
+    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        // 微博的未读数
+        //        int status = [responseObject[@"status"] intValue];
+        // 设置提醒数字
+        //        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", status];
+        
+        // @20 --> @"20"
+        // NSNumber --> NSString
+        // 设置提醒数字(微博的未读数)
+        NSString *status = [responseObject[@"status"] description];
+        if ([status isEqualToString:@"0"]) { // 如果是0，得清空数字
+            self.tabBarItem.badgeValue = nil;
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            
+            UIApplication *app = [UIApplication sharedApplication];
+            // 应用程序右上角数字
+            app.applicationIconBadgeNumber = 0;
+        } else { // 非0情况
+            self.tabBarItem.badgeValue = status;
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+            
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            
+            UIApplication *app = [UIApplication sharedApplication];
+            // 应用程序右上角数字
+            app.applicationIconBadgeNumber = status.intValue;
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败-%@", error);
+    }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // 设置导航栏
+    [self setupNavigationItem];
     
     
 }
 
-- (void)setupRefresh
+- (void)setupUpRefresh
+{
+    ZCLoadMoreFooter *footer = [ZCLoadMoreFooter footer];
+    footer.hidden = YES;
+    self.tableView.tableFooterView = footer;
+}
+
+- (void)loadMoreStatus
+{
+    // 1.请求管理者
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    // 2.拼接请求参数
+    ZCAccount *account = [ZCAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    params[@"count"] = @1;
+    // max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
+    ZCStatues *lastStatus = [self.statuses lastObject];
+    // 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
+    if (lastStatus) {
+        long long  maxId = lastStatus.idstr.longLongValue - 1;
+        
+        params[@"max_id"] = @(maxId);
+        
+    }
+    
+    
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *newArr =[ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        [self.statuses addObjectsFromArray:newArr];
+        
+        // 刷新表格
+        [self.tableView reloadData];
+        // 显示数量
+        self.tableView.tableFooterView.hidden = YES;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        self.tableView.tableFooterView.hidden = YES;
+    }];
+
+}
+
+
+- (void)setupDownRefresh
 {
     UIRefreshControl *reCol = [[UIRefreshControl alloc] init];
     [reCol addTarget:self action:@selector(refreshStatusChange:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:reCol];
+    
+    // 马上进入刷新状态
+    [reCol beginRefreshing];
+    
+    
+    // 马上刷新数据
+    [self refreshStatusChange:reCol];
 }
 /**
  *  下啦刷新功能实现
@@ -68,10 +194,18 @@
     // 取出最前面的微博（最新的微博，ID最大的微博）
     ZCStatues *firstStatus = [self.statuses firstObject];
     // 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
-    params[@"since_id"] = firstStatus.idstr;
+    if (firstStatus) {
+        params[@"since_id"] = firstStatus.idstr;
+        
+    }
     
     
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+
+        
         NSArray *newStatuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
 //        
         // 将最新的微博数据，添加到总数组的最前面
@@ -88,6 +222,8 @@
         
         // 刷新表格
         [self.tableView reloadData];
+        // 显示数量
+        [self showNewStatusCount:newStatuses.count];
         [col endRefreshing];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [col endRefreshing];
@@ -98,45 +234,83 @@
     [col endRefreshing];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+/**
+ *  显示刷新了的微博数量
+ *
+ */
+- (void)showNewStatusCount:(NSInteger)count
 {
-    [super viewWillAppear:animated];
-    // 设置导航栏
-    [self setupNavigationItem];
+    // 刷新了之后清除那个标号
+    self.tabBarItem.badgeValue = nil;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-   
+    UILabel *statusC = [[UILabel alloc] init];
+    statusC.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
+    statusC.textColor = [UIColor whiteColor];
+    statusC.textAlignment = NSTextAlignmentCenter;
+    statusC.font = [UIFont systemFontOfSize:13];
+    if (count) {
+        statusC.text = [NSString stringWithFormat:@"加载了%ld条微博", (long)count];
+    }else{
+        statusC.text = @"没有新微博产生";
+    }
+    
+    statusC.width = self.view.width;
+    statusC.height = 33;
+    
+    statusC.y = 64 - statusC.height;
+    
+    self.navigationController.view.backgroundColor = [UIColor redColor];
+    [self.navigationController.view insertSubview:statusC belowSubview:self.navigationController.navigationBar];
+    //    上面那种插入好点
+//    statusC.frame = CGRectMake(0, -33, width, height);
+//    [self.navigationController.view addSubview:statusC];
+    
+    [UIView animateWithDuration:1.0 animations:^{
+//        statusC.y += statusC.height;
+        statusC.transform = CGAffineTransformMakeTranslation(0, statusC.height);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveLinear  animations:^{
+//            statusC.y -= statusC.height;
+            statusC.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [statusC removeFromSuperview];
+        }];
+    }];
+    
+    
 }
+
+
 
 #pragma mark - setup的方法
 
 /**
  *  加载新微博
  */
-- (void)loadNewStatus
-{
-//    https://api.weibo.com/2/statuses/friends_timeline.json
-    
-    AFHTTPRequestOperationManager *mag = [AFHTTPRequestOperationManager manager];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    ZCAccount *account =  [ZCAccountTool account];
-    parameters[@"access_token"] = account.access_token;
-    parameters[@"count"] = @30;
-    
-    
-    [mag GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        
-        NSLog(@"到了获取用户的这个地方");
-        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        
-        // 刷新一下表格了
-        [self.tableView reloadData];
-        
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-
-}
+//- (void)loadNewStatus
+//{
+////    https://api.weibo.com/2/statuses/friends_timeline.json
+//    
+//    AFHTTPRequestOperationManager *mag = [AFHTTPRequestOperationManager manager];
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    ZCAccount *account =  [ZCAccountTool account];
+//    parameters[@"access_token"] = account.access_token;
+//    parameters[@"count"] = @30;
+//    
+//    
+//    [mag GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//
+//        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        
+//        // 刷新一下表格了
+//        [self.tableView reloadData];
+//        
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//
+//}
 
 - (void)setupUserInfo
 {
@@ -244,7 +418,7 @@
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%lu",(unsigned long)self.statuses.count);
+   
     return self.statuses.count;
 }
 
@@ -285,5 +459,31 @@
     [self.pulldown removeFromSuperview];
     
 }
+
+/**
+ *  scrollView 滚动了
+ *
+ */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.tableView.tableFooterView.hidden == NO) return;
+    
+        CGFloat offsetY = self.tableView.contentOffset.y;
+        
+        
+        CGFloat judgeoffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - self.tableView.tableFooterView.height - scrollView.height;
+        
+        if (offsetY >= judgeoffsetY) { // 最后一个cell完全进入视野范围内
+            // 显示footer
+            self.tableView.tableFooterView.hidden = NO;
+            
+            // 加载更多的微博数据
+            [self loadMoreStatus];
+        }
+
+    
+    // 当最后一个cell完全显示在眼前时候 offsetY的值
+}
+
 
 @end
