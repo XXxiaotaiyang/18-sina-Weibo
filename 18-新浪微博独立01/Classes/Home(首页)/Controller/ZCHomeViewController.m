@@ -14,20 +14,42 @@
 #import "AFNetworking.h"
 #import "ZCAccount.h"
 #import "UIImageView+WebCache.h"
-#import "ZCStatues.h"
+#import "ZCStatus.h"
 #import "ZCUser.h"
 #import "MJExtension.h"
 #import "ZCLoadMoreFooter.h"
+#import "ZCStatusCell.h"
+#import "ZCStatusFrame.h"
 
 @interface ZCHomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, weak) ZCPullDownView *pulldown;
 @property(nonatomic, weak) ZCButton *homeBtn;
 
 // 定义一个用来存放微博的status
-@property(nonatomic, strong) NSMutableArray *statuses;
+//@property(nonatomic, strong) NSMutableArray *statuses;
+// 定义一个用来存放微博的statusFrame
+@property(nonatomic, strong) NSMutableArray *statusFrame;
 @end
 
 @implementation ZCHomeViewController
+//
+- (NSMutableArray *)statusFrame
+{
+    if (_statusFrame == nil) {
+        _statusFrame = [NSMutableArray array];
+    }
+    return _statusFrame;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // 设置导航栏
+    [self setupNavigationItem];
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +59,7 @@
     [self setupUserInfo];
     
     // 加载新微博
-    // 将下啦刷新和刷新集成到一块  刚上来就刷新  这样可以省点代码
+    // 将下啦刷新和刷新集成到一块  刚上来就刷新  这样可以省点代码也可以防止报错
 //    [self loadNewStatus];
     
     // 下来刷新
@@ -45,23 +67,26 @@
     
     //上啦刷新空间
     [self setupUpRefresh];
-    
-    // 显示未读消息
-//    self.tabBarItem.badgeValue = @"1";
-//    int count = 10;
-//    NSString *statusC = [NSString stringWithFormat:@"%d", count];
-//    if ([statusC isEqualToString:@"0"]) {
-//        self.tabBarItem.badgeValue = nil;
-//        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-//    }else{
-//        self.tabBarItem.badgeValue = statusC;
-//        [UIApplication sharedApplication].applicationIconBadgeNumber = statusC.intValue;
-//    }
+
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setupUnreadeCount) userInfo:nil repeats:YES];
     
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
+}
+
+/**
+ *  将status模型专程statusFrame
+ */
+- (NSArray *)statusFrameWithStatuses:(NSArray *)statuses
+{
+    NSMutableArray *frame = [NSMutableArray array];
+    for (ZCStatus *status in statuses) {
+        ZCStatusFrame *f = [[ZCStatusFrame alloc] init];
+        f.status = status;
+        [frame addObject:f];
+    }
+    return frame;
 }
 
 - (void)setupUnreadeCount
@@ -112,14 +137,7 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // 设置导航栏
-    [self setupNavigationItem];
-    
-    
-}
+
 
 - (void)setupUpRefresh
 {
@@ -139,10 +157,10 @@
     params[@"access_token"] = account.access_token;
     params[@"count"] = @1;
     // max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
-    ZCStatues *lastStatus = [self.statuses lastObject];
+    ZCStatusFrame *lastStatus = [self.statusFrame lastObject];
     // 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
     if (lastStatus) {
-        long long  maxId = lastStatus.idstr.longLongValue - 1;
+        long long  maxId = lastStatus.status.idstr.longLongValue - 1;
         
         params[@"max_id"] = @(maxId);
         
@@ -150,9 +168,9 @@
     
     
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *newArr =[ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        
-        [self.statuses addObjectsFromArray:newArr];
+        NSArray *newArr =[ZCStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSArray *newFrameArr = [self statusFrameWithStatuses:newArr];
+        [self.statusFrame addObjectsFromArray:newFrameArr];
         
         // 刷新表格
         [self.tableView reloadData];
@@ -181,6 +199,7 @@
 /**
  *  下啦刷新功能实现
  */
+
 - (void)refreshStatusChange:(UIRefreshControl *)col
 {
     // 1.请求管理者
@@ -192,29 +211,30 @@
     params[@"access_token"] = account.access_token;
     
     // 取出最前面的微博（最新的微博，ID最大的微博）
-    ZCStatues *firstStatus = [self.statuses firstObject];
+    ZCStatusFrame *firstStatus = [self.statusFrame firstObject];
     // 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0
     if (firstStatus) {
-        params[@"since_id"] = firstStatus.idstr;
+        params[@"since_id"] = firstStatus.status.idstr;
         
     }
     
     
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        NSLog(@"%@", responseObject[@"statuses"]);
         
-
-        
-        NSArray *newStatuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSArray *newStatuses = [ZCStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSArray *newStatusFrame = [self statusFrameWithStatuses:newStatuses];
 //        
         // 将最新的微博数据，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         
         NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
 
-        [self.statuses insertObjects:newStatuses atIndexes:set];
 //        [self.statuses insertObjects:newStatuses atIndexes:set];
+        [self.statusFrame insertObjects:newStatusFrame atIndexes:set];
+//        [self.statuses insertObjects:newStatuses atIndexes:set];
+
         
         
 
@@ -285,32 +305,7 @@
 
 #pragma mark - setup的方法
 
-/**
- *  加载新微博
- */
-//- (void)loadNewStatus
-//{
-////    https://api.weibo.com/2/statuses/friends_timeline.json
-//    
-//    AFHTTPRequestOperationManager *mag = [AFHTTPRequestOperationManager manager];
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    ZCAccount *account =  [ZCAccountTool account];
-//    parameters[@"access_token"] = account.access_token;
-//    parameters[@"count"] = @30;
-//    
-//    
-//    [mag GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//
-//        self.statuses = [ZCStatues objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-//        
-//        // 刷新一下表格了
-//        [self.tableView reloadData];
-//        
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
-//
-//}
+
 
 - (void)setupUserInfo
 {
@@ -419,32 +414,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    
-    return self.statuses.count;
+    
+    return self.statusFrame.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *reuseIdentifier = @"Cell";
+
+   
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    }
-    
-    // 取出weibo
-    ZCStatues *statuses = self.statuses[indexPath.row];
-    ZCUser *user = statuses.user;
-//    NSString *name = user[@"name"];
-    
-    cell.textLabel.text = user.name;
-    cell.detailTextLabel.text = statuses.text;
-    
-    // 设置图片
-    NSString *imageUrl = user.profile_image_url;
-    UIImage *placehoder = [UIImage imageNamed:@"avatar_default_small"];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placehoder];
-    
+    ZCStatusCell *cell = [ZCStatusCell cellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    cell.statusFrame = self.statusFrame[indexPath.row];
+    
     
     return cell;
 }
@@ -483,6 +466,13 @@
 
     
     // 当最后一个cell完全显示在眼前时候 offsetY的值
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZCStatusFrame *frame = self.statusFrame[indexPath.row];
+//    NSLog(@"高度 = %f", frame.cellHeight);
+    return frame.cellHeight;
 }
 
 

@@ -9,5 +9,10 @@
 #import "ZCUser.h"
 
 @implementation ZCUser
-
+- (void)setMbtype:(int)mbtype
+{
+    _mbtype = mbtype;
+    
+    self.vip = mbtype > 2;
+}
 @end
